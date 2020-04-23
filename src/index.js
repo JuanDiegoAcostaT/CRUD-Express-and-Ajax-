@@ -48,6 +48,18 @@ app.post('/products', (req, res, next) => {
     res.json('Succesfully Created')
 })
 
+app.put('/products/:id', (req, res) => {
+    const { id } = req.params;
+    const { name } = req.body;
+
+    products.forEach((product, i) => {
+        if(product.id == id){
+            product.name = name;
+        }
+    })
+
+    })
+
 
 //Static Files
 

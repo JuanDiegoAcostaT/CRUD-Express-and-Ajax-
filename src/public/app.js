@@ -16,7 +16,7 @@ $(function () {
                             <input type="text" class="name" value="${product.name}"></input>
                         </td>
                             <td>
-                                <button class="upDate-button" >Update</button>
+                                <button class="upDateButton" >Update</button>
                                 <button class="deleteButton" >Delete</button>
                             </td>
                     </tr>
@@ -41,4 +41,22 @@ $(function () {
 
       })
     })
+
+    $('table').on('click', '.upDateButton', function () {
+        let row = $(this).closest('tr');
+        let id = row.find('.id').text();
+        let name = row.find('.name').val();
+
+        $.ajax({
+            url : '/products/' + id,
+            method : 'PUT',
+            data : {
+                name : name 
+            },
+            success : function (response){
+            $('#getProducts').click();
+            }
+            })
+
+        })
 })
