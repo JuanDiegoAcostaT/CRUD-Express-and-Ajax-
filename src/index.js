@@ -28,6 +28,10 @@ app.set('port', process.env.PORT || 3000);
 
 //Middlewares
 
+app.use(morgan('dev'));
+app.use(express.urlencoded({ extended : false }));
+app.use(express.json());
+
 
 //Routes
 
@@ -36,7 +40,12 @@ app.get('/products', (req, res) => {
 })
 
 app.post('/products', (req, res, next) => {
-
+    const { name } = req.body;
+    products.push({
+        id : products.length + 1,
+        name : name,
+    })
+    res.json('Succesfully Created')
 })
 
 

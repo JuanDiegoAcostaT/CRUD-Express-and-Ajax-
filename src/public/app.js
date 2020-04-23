@@ -25,4 +25,20 @@ $(function () {
             }
         })
     })
+
+    $('#productForm').on('submit', function (e) {
+        e.preventDefault();
+      let newProduct = $('#newProduct');
+      $.ajax({
+          url : '/products',
+          method: 'POST',
+          data : {
+              name : newProduct.val()
+          },
+          success: function (res) {
+            $('#getProducts').click();
+          }
+
+      })
+    })
 })
