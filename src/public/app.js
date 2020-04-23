@@ -58,5 +58,23 @@ $(function () {
             }
             })
 
-        })
+    })
+
+    $('table').on('click', '.deleteButton', function () {
+        let row = $(this).closest('tr');
+        let id = row.find('.id').text();
+
+        
+        $.ajax({
+            url : '/products/' + id,
+            method : 'DELETE',
+            data : {
+                id : id
+            },
+            success : function (response){
+            $('#getProducts').click();
+            }
+            })
+
+    })
 })

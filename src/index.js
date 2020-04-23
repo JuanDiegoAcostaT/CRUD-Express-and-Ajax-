@@ -58,9 +58,24 @@ app.put('/products/:id', (req, res) => {
         }
     })
 
+    res.json('Succesfully Updated')
+
+
     })
 
 
+    app.delete('/products/:id', (req, res) => {
+        const { id } = req.params;
+
+        products.forEach((product, i) => {
+            if(product.id == id){
+                products.splice(i, 1);
+            }
+        })
+
+    res.json('Succesfully Deleted')
+
+    })
 //Static Files
 
 app.use(express.static(path.join(__dirname, '/public')))
